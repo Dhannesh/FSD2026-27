@@ -1,4 +1,4 @@
-# EventEmitter in Node.js — Student Notes
+# EventEmitter in Node.js
 
 ## 1. What is EventEmitter?
 
@@ -46,16 +46,14 @@ Understanding `EventEmitter` = understanding how Node "thinks" under the hood.
 // eventEmitterDemo.mjs
 import { EventEmitter } from "node:events";
 
-class MyEmitter extends EventEmitter {}
-
-const myEmitter = new MyEmitter();
+const task = new EventEmitter();
 
 // Register listeners
-myEmitter.on("greet", (name) => {
+task.on("greet", (name) => {
   console.log(`Hello, ${name}! Welcome to the session.`);
 });
 
-myEmitter.on("exit", (reason) => {
+task.on("exit", (reason) => {
   console.log(`Session ending. Reason: ${reason}`);
 });
 
@@ -80,8 +78,8 @@ Session ending. Reason: Class completed
 You can attach several listeners to the same event name — they all run, in the order they were registered.
 
 ```javascript
-myEmitter.on("greet", (name) => console.log(`Hi ${name}`));
-myEmitter.on("greet", (name) => console.log(`Logged: ${name} greeted`));
+task.on("greet", (name) => console.log(`Hi ${name}`));
+task.on("greet", (name) => console.log(`Logged: ${name} greeted`));
 ```
 
 ### b) `.on()` vs `.once()`
@@ -94,18 +92,6 @@ Useful for setup/initialization events that should only run once (e.g., a "ready
 ### c) Emit is synchronous
 
 `emit()` calls all listeners **immediately and in order**, before the next line of code runs. This is a common misconception — students often assume everything in Node is async by default. It isn't; `EventEmitter` itself is synchronous. Async behavior comes from what you _do_ inside the listener (e.g., calling `setTimeout`, reading a file, etc.)
-
-### d) The special `'error'` event
-
-If you `emit('error', ...)` and **no listener** is registered for `'error'`, Node will **throw an exception and crash the process**. Always attach an `'error'` listener when there's a chance of failure.
-
-```javascript
-myEmitter.on("error", (err) => {
-  console.error("Something went wrong:", err.message);
-});
-
-myEmitter.emit("error", new Error("Something failed"));
-```
 
 ---
 
@@ -147,9 +133,9 @@ myEmitter.emit("greet", "Dhanesh", 34);
 
 ---
 
-## 9. Practice Exercise for Students
+## 9. Practice Exercise
 
-> Build a `MyEmitter` class simulating an **online exam system**. It should emit:
+> Build a `MyEmitter` to simulating an **online exam system**. It should emit:
 >
 > - `'examStarted'` (with student name)
 > - `'answerSubmitted'` (with question number)
