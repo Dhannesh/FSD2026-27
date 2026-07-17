@@ -18,6 +18,7 @@ myEmitter.on("greet", (name) => {
   console.log(`(Logging) Greet event triggered for: ${name}`);
 });
 myEmitter.on("greet", logListener);
+
 myEmitter.on("exit", (reason) => {
   console.log(`Session ending. Reason: ${reason}`);
 });
@@ -26,17 +27,17 @@ myEmitter.once("exit", () => {
   console.log("(This cleanup listener runs only once)");
 });
 
-console.log("Listener count for greet:", myEmitter.listenerCount("greet"));
+// console.log("Listener count for greet:", myEmitter.listenerCount("greet"));
 
 myEmitter.emit("greet", "Dhanesh");
-myEmitter.emit("hello", "kuchv");
-myEmitter.off("greet", logListener);
-console.log("\n\n");
+// myEmitter.emit("hello", "kuchv");
+myEmitter.off("greet", logListener); //logListener removed from greet emitter
+// console.log("\n\n");
 
-myEmitter.emit("greet", "Dhanesh");
+myEmitter.emit("greet", "Happy"); //logListener not activated for Happy
 
-myEmitter.removeAllListeners("greet");
-myEmitter.emit("greet", "Dhanesh");
-// myEmitter.emit("exit", "Class completed");
+// myEmitter.removeAllListeners("greet");
+// myEmitter.emit("greet", "Dhanesh");
+myEmitter.emit("exit", "Class completed");
 
-// myEmitter.emit("exit", "Second call - Testing once()");
+myEmitter.emit("exit", "Second call - Testing once()");
