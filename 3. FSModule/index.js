@@ -1,4 +1,6 @@
 import fs from "fs/promises";
+import readline from "node:readline/promises";
+import { stdin, stdout } from "node:process";
 
 const FILE = "cart.json";
 
@@ -64,28 +66,38 @@ const removeProduct = async (id) => {
 };
 
 const main = async () => {
-  await addProduct({
-    id: 101,
-    name: "Laptop",
-    price: 65000,
-    quantity: 1,
-  });
+  let choice;
+  const rl = await readline.createInterface({ input: stdin, output: stdout });
+  do {
+    console.log("1..........Show Cart");
+    console.log("2..........Add Product");
+    console.log("3..........Remove Product");
+    console.log("4..........Update Quantity");
+    console.log("5..........Checkout");
+    choice = rl.question("Enter your choice:");
+  } while (choice !== 5);
+  // await addProduct({
+  //   id: 101,
+  //   name: "Laptop",
+  //   price: 65000,
+  //   quantity: 1,
+  // });
 
-  await addProduct({
-    id: 102,
-    name: "Mouse",
-    price: 800,
-    quantity: 2,
-  });
+  // await addProduct({
+  //   id: 102,
+  //   name: "Mouse",
+  //   price: 800,
+  //   quantity: 2,
+  // });
 
-  await displayCart();
+  // await displayCart();
 
-  await updateQuantity(102, 3);
+  // await updateQuantity(102, 3);
 
-  await displayCart();
+  // await displayCart();
 
-  await removeProduct(101);
+  // await removeProduct(101);
 
-  await displayCart();
+  // await displayCart();
 };
 main();
