@@ -67,14 +67,14 @@ const removeProduct = async (id) => {
 
 const main = async () => {
   let choice;
-  const rl = await readline.createInterface({ input: stdin, output: stdout });
+  const rl = readline.createInterface({ input: stdin, output: stdout });
   do {
     console.log("1..........Show Cart");
     console.log("2..........Add Product");
     console.log("3..........Remove Product");
     console.log("4..........Update Quantity");
     console.log("5..........Checkout");
-    choice = rl.question("Enter your choice:");
+    choice = await rl.question("Enter your choice:");
   } while (choice !== 5);
   // await addProduct({
   //   id: 101,
