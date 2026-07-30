@@ -73,6 +73,7 @@ const main = async () => {
   let choice;
   const rl = readline.createInterface({ input: stdin, output: stdout });
   do {
+    console.log("\nCRUD Operations of 🛒 Management");
     console.log("1..........Show Cart");
     console.log("2..........Add 🛒 Product");
     console.log("3..........Remove Product");
