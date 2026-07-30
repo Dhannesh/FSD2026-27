@@ -36,7 +36,7 @@ button.addEventListener("click", handleClick);
 button.dispatchEvent("click", { targetId: "submitBtn" });
 // // Button clicked! Type: click, at <timestamp>
 
-// button.removeEventListener("click", handleClick);
+button.removeEventListener("click", handleClick);
 
-// button.dispatchEvent("click", { targetId: "submitBtn" });
+button.dispatchEvent("click", { targetId: "submitBtn" });
 // // (nothing happens — listener was removed)
