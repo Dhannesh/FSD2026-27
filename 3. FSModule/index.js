@@ -1,6 +1,6 @@
 import fs from "fs/promises";
-import readline from "node:readline/promises";
-import { stdin, stdout } from "node:process";
+import readline from "readline/promises";
+import { stdin, stdout } from "process";
 
 const FILE = "cart.json";
 
