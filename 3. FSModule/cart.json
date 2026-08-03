@@ -10,5 +10,11 @@
     "name": "mouse",
     "price": 150,
     "qty": 2
+  },
+  {
+    "id": "105",
+    "name": "Macbook",
+    "price": 55000,
+    "qty": 1
   }
 ]
